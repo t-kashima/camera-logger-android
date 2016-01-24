@@ -1,26 +1,40 @@
 package com.unuuu.android.cameralogger
 
 import android.hardware.Camera
+import com.google.gson.Gson
+import com.unuuu.android.cameralogger.entities.LoggerEntity
 
 class CameraLogger {
-    private var camera : Camera? = null
+    private var logger : LoggerEntity? = null
 
     constructor(camera : Camera) {
-        this.camera = camera
+        logger = LoggerEntity()
+        logger?.supportedVideoSizes = getSupportedVideoSizes(camera)
+        logger?.supportedPreviewSizes = getSupportedPreviewSizes(camera)
     }
 
     override fun toString() : String {
-        return getSupportedVideoSizes()
+        return Gson().toJson(logger)
     }
 
-    private fun getSupportedVideoSizes() : String {
-        val parameters = this.camera?.parameters
-        val supportedVideoSizes = parameters?.supportedVideoSizes
-        var str = "";
-        for (videoSize in supportedVideoSizes?.listIterator()) {
-            str += "" + videoSize.width + ":" + videoSize.height + ", "
-        }
-        return str
+    /**
+     * get supported video sizes
+     *
+     * @param camera camera
+     * @return a list of supported video sizes
+     */
+    private fun getSupportedVideoSizes(camera : Camera) : List<Camera.Size>? {
+        return camera?.parameters?.supportedVideoSizes
+    }
+
+    /**
+     * Get supported preview sizes
+     *
+     * @param camera camera
+     * @return a list of supported preview sizes
+     */
+    private fun getSupportedPreviewSizes(camera : Camera) : List<Camera.Size>? {
+        return camera?.parameters?.supportedPreviewSizes
     }
 }
 
