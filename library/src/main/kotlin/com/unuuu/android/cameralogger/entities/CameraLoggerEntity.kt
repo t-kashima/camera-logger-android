@@ -3,7 +3,7 @@ package com.unuuu.android.cameralogger.entities
 import android.hardware.Camera
 import com.google.gson.annotations.SerializedName
 
-class CameraLoggerEntity(camera : Camera) {
+class CameraLoggerEntity(camera: Camera) {
     @SerializedName("Parameters")
-    val parameters : Camera.Parameters = camera.parameters
+    val parameters = camera.parameters
 }
