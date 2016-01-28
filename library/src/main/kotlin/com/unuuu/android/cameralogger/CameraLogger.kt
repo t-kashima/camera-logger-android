@@ -4,16 +4,12 @@ import android.hardware.Camera
 import com.google.gson.GsonBuilder
 import com.unuuu.android.cameralogger.entities.CameraLoggerEntity
 
-class CameraLogger {
-    private var logger : CameraLoggerEntity? = null
-
-    constructor(camera : Camera) {
-        logger = CameraLoggerEntity(camera)
-    }
+class CameraLogger(camera : Camera) {
+    private val cameraLoggerEntity : CameraLoggerEntity = CameraLoggerEntity(camera)
 
     override fun toString() : String {
         // enable pretty print
         val gson = GsonBuilder().setPrettyPrinting().create()
-        return gson.toJson(logger)
+        return gson.toJson(cameraLoggerEntity)
     }
 }
