@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         try {
             val camera = Camera.open()
             Log.d(TAG, CameraLogger(camera).toString())
-        } catch (e : RuntimeException) {
+        } catch (e: RuntimeException) {
             Log.e(TAG, e.message)
         }
     }
